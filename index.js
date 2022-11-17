@@ -18,7 +18,7 @@ const MysqlDriver = Base.extend({
 
   startMigration: function (cb) {
     const self = this;
-
+    this.runSql('SET lock_wait_timeout = 1;');
     if (!internals.notransactions) {
       return this.runSql('SET AUTOCOMMIT=0;')
         .then(function () {
